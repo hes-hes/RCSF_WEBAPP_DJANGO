@@ -1,0 +1,101 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+
+<div class="row">
+    <h1 class="display-3">GSM - 2G</h1>
+</div>
+
+<div class="row">
+    <center>
+        {% load static %} 
+        <img src="{% static "gsm.png" %}" alt="gsm.png"width="80%"> 
+    </center>
+</div>
+
+<div>
+
+    <h3 align="justify">
+        <br>O GSM é um sistema celular de 2ª geração, vocacionado para o serviço de voz. Existem algumas 
+        variantes deste sistema, tais como o GSM, GSM-R e o EDGD cujas caracteristicas se descrevem na tabela em baixo.
+    </h3>
+    
+</div>
+  
+{% endblock %}
+
+{% block main %}
+
+<div class="col-md-12">
+    
+    <table class="table">
+        <tr>
+            <td colspan=1 style="visibility:collapse">Hide</td>
+            <th>GSM</th>
+            <th>GPRS</th>
+            <th>EDGE</th>
+        </tr>
+        <tr>
+            <th>Bandas de frequência</th>
+            <td>900 e 1800 MHz</td>
+            <td>900 e 1800 MHz</td>
+            <td>900 e 1800 MHz</td>
+        </tr>
+        <tr>
+            <th>Largura de banda</th>
+            <td>200 kHz</td>
+            <td>200 kHz</td>
+            <td>200 kHz</td>
+        </tr>
+        <tr>
+            <th>Técnica de acesso</th>
+            <td>TDMA</td>
+            <td>TDMA</td>
+            <td>TDMA</td>
+        </tr>
+        <tr>
+            <th>Modulação</th>
+            <td>GMSK</td>
+            <td>GMSK</td>
+            <td>GMSK, 8PSK</td>
+        </tr>
+        <tr>
+            <th>Débitos</th>
+            <td>9,6 kbit/s</td>
+            <td>35 kbit/s</td>
+            <td>80 kbit/s</td>
+        </tr>
+        <tr>
+            <th>Cobertura típica</th>
+            <td>1 até 30 km</td>
+            <td>1 até 30 km</td>
+            <td>1 até 30 km</td>
+        </tr>
+        <tr>
+            <th>Planeamento Celular</th>
+            <td>A cada estação base é<br/> atribuída um parte<br/> dos canais disponíveis e às<br/> estações bases
+                por
+                perto<br/> são
+                atribuídos grupos<br/> de canais diferentes.
+            </td>
+            <td>A cada estação base é<br/> atribuída um parte<br/> dos canais disponíveis e às<br/> estações bases
+                por
+                perto<br/> são
+                atribuídos grupos<br/> de canais diferentes.
+            </td>
+            <td>A cada estação base é<br/> atribuída um parte<br/> dos canais disponíveis e às<br/> estações bases
+                por
+                perto<br/> são
+                atribuídos grupos<br/> de canais diferentes.
+            </td>
+        </tr>
+        <tr>
+            <th>Tipos de Serviços</th>
+            <td>Voz, SMS, MMS e Dados</td>
+            <td>Voz, SMS, MMS e Dados</td>
+            <td>Voz, SMS, MMS e Dados</td>
+        </tr>
+    </table>
+</div>
+
+{% endblock main %}

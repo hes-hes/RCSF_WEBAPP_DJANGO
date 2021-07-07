@@ -1,0 +1,181 @@
+{% extends 'layout.html' %}
+
+
+{% block title %}
+
+<div class="row">
+    <h1 class="display-3"> Interferência co-canal </h1>
+</div>
+
+<div class="row">
+    <center>
+        <p> <br> </p>
+
+        {% load static %} 
+        <img src="{% static "interferencia_cocanal.png" %}" alt="interferencia_cocanal.png"width="80%">
+        <p> <br> </p>
+    </center>
+</div>
+
+<div>
+    <h3>
+        <br>
+        O valor da interferência co-canal é obtida da seguinte forma:
+        <br>
+    </h3>
+    <h3>
+        <br>
+        <h5>
+            $$ \frac{C}{I} = \frac{r_{cc}^n}{6}; \;\;\;  r_{cc} = \frac{D_r}{R} = \sqrt{3N_{cp}} $$
+        </h5>
+    </h3>
+
+</div>
+  
+{% endblock %}
+
+{% block main %}
+
+    <div class="col-md-12">
+        
+        <center>
+
+            <h2> Calculadora de interferência co-canal </h2>
+
+            <button data-toggle="collapse" data-target="#calculadora_interferencia_cocanal">
+                {% load static %} 
+                <img src="{% static "down_icon.png" %}" alt="down_icon.png" width="30" height="30"> 
+                <br>Mostrar                    
+            </button>
+
+            <div id="calculadora_interferencia_cocanal" class="collapse">
+
+                <p> <br> </p>
+
+                <center>
+
+                    <form action="calculadora_interferencia_cocanal" method="POST" >
+                    {% csrf_token %}
+
+                    Indica o coeficiente de atenuação (n):<br>      
+                    <input type="text" name="n"><br><br>
+
+                    Indica o numero de células:<br>      
+                    <input type="text" name="ncp"><br><br>
+
+                    <input type="submit" value="Calcular">
+
+                    </form>
+
+                </center>
+
+            </div>
+
+            <p> <br> </p>
+
+            <h2> Calculadora de interferência co-canal com tri-sectorização </h2>
+
+            <button data-toggle="collapse" data-target="#calculadora_interferencia_cocanal_trisetorial">
+                {% load static %} 
+                <img src="{% static "down_icon.png" %}" alt="down_icon.png" width="30" height="30"> 
+                <br>Mostrar                    
+            </button>
+
+            <div id="calculadora_interferencia_cocanal_trisetorial" class="collapse">
+                
+                <p> <br> </p>
+                    <h3>
+                        $$ \frac{C}{I}_{tri-sectorização}\;=\;\frac{1}{r_{cc}^{-n} + (r_{cc} + 1/\sqrt{2})^{-n}}  $$
+                    </h3>
+                <p> <br> </p>
+
+                <center>
+
+                    <form action="calculadora_interferencia_cocanal_trisetorial" method="POST" >
+                    {% csrf_token %}
+
+                    Indica o coeficiente de atenuação (n):<br>      
+                    <input type="text" name="n"><br><br>
+
+                    Indica o numero de células:<br>      
+                    <input type="text" name="ncp"><br><br>
+
+                    <input type="submit" value="Calcular">
+
+                    </form>
+
+                </center>
+
+            </div>
+
+            <p> <br> </p>
+
+            <h2> Calculadora de cluster minima </h2>
+
+            <button data-toggle="collapse" data-target="#calculadora_cluster_minima">
+                {% load static %} 
+                <img src="{% static "down_icon.png" %}" alt="down_icon.png" width="30" height="30"> 
+                <br>Mostrar                    
+            </button>
+
+            <div id="calculadora_cluster_minima" class="collapse">
+
+                <p> <br> </p>
+
+                <center>
+
+                    <form action="calculadora_cluster_minima" method="POST" >
+                    {% csrf_token %}
+
+                    Indica o valor da interferência co-canal [dB]:<br>     
+                    <input type="text" name="c_i"><br><br>
+
+                    Indica o coeficiente de atenuação (n):<br>      
+                    <input type="text" name="n"><br><br>
+
+                    <input type="submit" value="Calcular">
+
+                    </form>
+
+                </center>
+
+            </div>
+
+            <p> <br> </p>
+
+            <h2> Analisar gráfico de barras de interfêrencia co-canal</h2>
+
+            <button data-toggle="collapse" data-target="#grafico_interferencia_cocanal">
+                {% load static %} 
+                <img src="{% static "down_icon.png" %}" alt="down_icon.png" width="30" height="30"> 
+                <br>Mostrar                    
+            </button>
+
+            <div id="grafico_interferencia_cocanal" class="collapse">
+
+                <p> <br> </p>
+
+                <center>
+
+                    <form action="grafico_interferencia_cocanal" method="POST" >
+                    {% csrf_token %}
+
+                    Indica a interferância co-canal máxima [dB]:<br>     
+                    <input type="text" name="c_i"><br><br>
+
+                    <input type="submit" value="Mostrar gráfico">
+
+                    </form>
+
+                </center>
+
+            </div>
+
+            <p> <br> </p>
+                        
+        </center>
+        
+    <div>
+
+{% endblock main %}
+

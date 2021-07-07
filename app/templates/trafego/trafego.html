@@ -1,0 +1,148 @@
+{% extends 'layout.html' %}
+
+
+{% block title %}
+
+<div class="row">
+    <h1 class="display-3"> Tráfego e serviços </h1>
+</div>
+
+<div class="row">
+    <center>
+        <p> <br> </p>
+
+        {% load static %} 
+        <img src="{% static "trafego.png" %}" alt="trafego.png"width="60%">
+        <p> <br> </p>
+    </center>
+</div>
+
+<div>
+    <h3>
+            A teoria de tráfego segundo a modelação Erlang-B, relaciona a 
+            probabilidade de bloqueio (Pb), o tráfego oferecido (T) e a quantidade de 
+            canais (N), da seguinte forma:
+    </h3>
+    <h3>
+        <h5>
+            $$
+                Pb = \frac{\frac{T^N}{N!}}{\sum\limits_{n=0}^{N} \frac{T^n}{n!}}
+            $$
+        </h5>
+    </h3>
+
+</div>
+  
+{% endblock %}
+
+{% block main %}
+
+    <div class="col-md-12">
+        
+        <center>
+
+            <h2> Calculadora de Probabilidade de bloqueio (Pb) [Erlang B] </h2>
+
+            <button data-toggle="collapse" data-target="#calculadora_probabilidade_bloqueio">
+                {% load static %} 
+                <img src="{% static "down_icon.png" %}" alt="down_icon.png" width="30" height="30"> 
+                <br>Mostrar                    
+            </button>
+
+            <div id="calculadora_probabilidade_bloqueio" class="collapse">
+
+                <p> <br> </p>
+
+                <center>
+
+                    <form action="calculadora_probabilidade_bloqueio" method="POST" >
+                    {% csrf_token %}
+
+                    Indica o numero de tráfego oferecido:<br> 
+                    <input type="text" name="trafego"><br><br>
+
+                    Indica o numero de canais oferecidos:<br> 
+                    <input type="text" name="canais"><br><br>
+
+                    <input type="submit" value="Calcular">
+
+                    </form>
+
+                </center>
+
+            </div>
+
+            <p> <br> </p>
+
+            <h2> Calculadora do Trafego oferecido </h2>
+
+            <button data-toggle="collapse" data-target="#calculadora_de_tráfego_oferecido">
+                {% load static %} 
+                <img src="{% static "down_icon.png" %}" alt="down_icon.png" width="30" height="30"> 
+                <br>Mostrar                    
+            </button>
+
+            <div id="calculadora_de_tráfego_oferecido" class="collapse">
+
+                <p> <br> </p>
+
+                <center>
+
+                    <form action="calculadora_de_trafego_oferecido" method="POST" >
+                    {% csrf_token %}
+
+                    Indica o valor da probabilidadde de bloqueio:<br>     
+                    <input type="text" name="pb"><br><br>
+
+                    Indica o numero de canais:<br>      
+                    <input type="text" name="canais"><br><br>
+
+                    <input type="submit" value="Calcular">
+
+                    </form>
+
+                </center>
+
+            </div>
+
+            <p> <br> </p>
+
+            <h2> Calculadora do numero de canais </h2>
+
+            <button data-toggle="collapse" data-target="#calculadora_numero_canais">
+                {% load static %} 
+                <img src="{% static "down_icon.png" %}" alt="down_icon.png" width="30" height="30"> 
+                <br>Mostrar                    
+            </button>
+
+            <div id="calculadora_numero_canais" class="collapse">
+
+                <p> <br> </p>
+
+                <center>
+
+                    <form action="calculadora_numero_canais" method="POST" >
+                    {% csrf_token %}
+
+                    Indica a probabilidade de bloqueio:<br>     
+                    <input type="text" name="pb"><br><br>
+
+                    Indica o valor do tráfego oferecido:<br>      
+                    <input type="text" name="trafego"><br><br>
+
+                    <input type="submit" value="Calcular">
+
+                    </form>
+
+                </center>
+
+            </div>
+
+            <p> <br> </p>
+                                   
+        </center>
+        
+    <div>
+
+{% endblock main %}
+

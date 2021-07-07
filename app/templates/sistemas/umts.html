@@ -1,0 +1,100 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+
+<div class="row">
+    <h1 class="display-3">UMTS - 3G</h1>
+</div>
+
+<div class="row">
+
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-4">
+      <center>
+        {% load static %} 
+        <img src="{% static "umts.png" %}" alt="umts.png" width="135%" align="center">  
+      </center>
+    </div>
+    <div class="col-md-6">
+
+    </div>
+    
+
+    
+</div>
+
+<div>
+
+    <h3 align="justify">
+      <br>UMTS (Sistema Universal de Telecomunicações Móveis) é um sistema celular móvel de terceira geração 
+      baseada no padrão GSM. Desenvolvido e mantido pelo 3GPP (Third Generation Partnership Project), 
+      o UMTS é um componente do conjunto de padrões da União Internacional de Telecomunicações IMT-2000.
+    </h3>
+    
+</div>
+
+{% endblock %}
+
+{% block main %}
+
+<div class="col-md-12">
+
+  <h2 style="font-weight: bold;">Características e curiosidades</h2>
+  <h5 align="justify">
+    UMTS foi lançada oficialmente ao publico em 2002. Usando bandas com a mesma capacidade 
+    para upload e download, o UMTS usa a tecnologia W-CDMA (Wideband Code Multiple Access) 
+    que é um padrão para uso de radiofrequência baseado nos mesmos conceitos de comunicação 
+    do CDMA.<br><br>
+
+    Para alem da melhoria na qualidade das chamadas de voz, UMTS permitiu a introdução das 
+    chamadas de video, grande melhoria de navegação na internet e permite roaming 
+    internacional.
+  </h5>
+
+  <h2 style="font-weight: bold;">Técnica de Acesso Múltiplo</h2>
+  <p align="justify">
+    O W-CDMA possui, essencialmente, dois modos de funcionamento: o TDD (Time Division Duplex - 
+    algo como "Duplexação por Divisão de Tempo"), onde as atividades de download e upload compartilham
+    a mesma portadora, mas em intervalos distintos; e o FDD (Frequency Division Duplex - algo como 
+    "Duplexação por Divisão de Frequência"), que utiliza portadoras diferentes para cada um destas 
+    atividades.<br><br>
+
+    O uso de TDD e FDD faz com que a transmissão seja mais eficiente, uma vez que cada modo é mais adequado
+    a determinadas situações. Por exemplo, o TDD se mostra mais vantajoso em aplicações "assimétricas", 
+    como serviços Web, onde o número de dados enviados normalmente é diferente da quantidade recebida
+  </p>
+
+  <h2 style="font-weight: bold;">Débitos</h2>
+  <p align="justify">
+    No UMTS é possivel atingir velocidades de até 2 Mb/s para download e para upload.<br>
+
+    Estas velocidades são possíveis, entre outros motivos, graças ao uso de uma portadora de 5 MHz
+  </p>
+
+  <h2 style="font-weight: bold;">Tipos de serviços</h2>
+  <p align="justify">
+    UMTS garante:
+
+    <ul>
+        <li>
+            <p align="justify">Voz e Video</p>
+        </li>
+
+        <li>
+            <p align="justify">Dados</p>
+        </li>
+
+        <li>
+            <p align="justify">SMS e MMS</p>
+        </li>
+        
+    </ul>
+    
+  </p>
+
+</div>
+
+
+{% endblock main %}

@@ -1,0 +1,153 @@
+{% extends 'layout.html' %}
+
+
+{% block title %}
+
+<div class="row">
+    <h1 class="display-3"> Modelo de  Walfisch - Ikegami</h1>
+</div>
+
+<div class="row">
+    <center>
+
+        <p> <br> </p>
+
+        {% load static %} 
+        <img src="{% static "walfisch_ikegami.png" %}" alt="okumura_hata.png"width="60%">
+        <p> <br> </p>
+
+    </center>
+</div>
+
+<div>
+    <h3>
+
+        O modelo Walfisch - Ikegami conjuga os modelos de Ikegami e 
+        de Walfisch-Bertoni com os resultados de medidas realizadas em
+        cidades europeias, da seguinte forma:
+        
+        <h5>
+
+            $$ 
+                L_{LOS[dB]} = 42.6 + 26·log(d_{[Km]}) + 20·log(f_{[MHz]}),\;\; em\;linha\;de\;vista 
+                
+            $$
+            $$
+                L_{NLOS[dB]} = 32.4 + 20·log(d_{[Km]}) + 20·log(f_{[MHz]}) + L_{rts} + L_{msd},\;\;fora\;de\;linha\;de\;vista 
+            $$
+        
+        </h5>
+
+    </h3>
+
+</div>
+  
+{% endblock %}
+
+{% block main %}
+
+    <div class="col-md-12">
+        
+        <center>
+
+            <h2> Atenuação em cidade média, sub-urbana ou com vegetação densa </h2>
+
+            <button data-toggle="collapse" data-target="#cidade_media">
+                {% load static %} 
+                <img src="{% static "down_icon.png" %}" alt="down_icon.png" width="30" height="30"> 
+                <br>Mostrar                    
+            </button>
+
+            <div id="cidade_media" class="collapse">
+
+                <p> <br> </p>
+
+                <center>
+
+                    <form action="walfisch_ikegami_media" method="POST">
+
+                        {% csrf_token %}
+
+                        Indica a frequência de trabalho [MHz]:<br>
+                        <input type="text" name="f"><br><br>
+
+                        Indica o numero médio de andares:<br>    
+                        <input type="text" name="a"><br><br>
+
+                        Indica a altura efetiva da estação base [m]:<br>
+                        <input type="text" name="hbe"><br><br>
+                        
+                        Indica a distância média entre edifícios [m]:<br>     
+                        <input type="text" name="d"><br><br>
+
+                        Indica a distância de ligação [m]:<br>     
+                        <input type="text" name="dist"><br><br>
+
+                        Indica a altura do móvel [m]:<br>
+                        <input type="text" name="hm"><br><br>
+
+                        Indica o ângulo do feixe [graus]:<br>
+                        <input type="text" name="angulo"><br><br>
+
+                        <input type="submit" value="Calcular">
+
+                    </form>
+
+                </center>
+
+            </div>
+            <p> <br> </p>   
+
+            <h2> Atenuação em cidade metropolitana </h2>
+
+            <button data-toggle="collapse" data-target="#metropolitana">
+                {% load static %} 
+                <img src="{% static "down_icon.png" %}" alt="down_icon.png"  width="30" height="30"> 
+                <br>Mostrar                    
+            </button>
+
+            <div id="metropolitana" class="collapse">
+
+                <p> <br> </p>
+
+                <center>
+
+                    <form action="walfisch_ikegami_metropolitana" method="POST" >
+                        {% csrf_token %}
+
+                        
+                        Indica a frequência de trabalho [MHz]:<br>
+                        <input type="text" name="f"><br><br>
+
+                        Indica o numero médio de andares:<br>    
+                        <input type="text" name="a"><br><br>
+
+                        Indica a altura efetiva da estação base [m]:<br>
+                        <input type="text" name="hbe"><br><br>
+                        
+                        Indica a distância média entre edifícios [m]:<br>     
+                        <input type="text" name="d"><br><br>
+
+                        Indica a distância de ligação [m]:<br>     
+                        <input type="text" name="dist"><br><br>
+
+                        Indica a altura do móvel [m]:<br>
+                        <input type="text" name="hm"><br><br>
+
+                        Indica o ângulo do feixe [graus]:<br>
+                        <input type="text" name="angulo"><br><br>
+
+                        <input type="submit" value="Calcular">
+
+                    </form>
+
+                </center>
+
+            </div>
+            <p> <br> </p>
+            
+        </center>
+        
+    <div>
+
+{% endblock main %}

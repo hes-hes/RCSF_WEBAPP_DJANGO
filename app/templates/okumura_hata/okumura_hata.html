@@ -1,0 +1,210 @@
+{% extends 'layout.html' %}
+
+
+{% block title %}
+
+<div class="row">
+    <h1 class="display-3"> Modelo de Okumura - Hata</h1>
+</div>
+
+<div class="row">
+    <center>
+
+        <p> <br> </p>
+
+        {% load static %} 
+        <img src="{% static "okumura_hata.png" %}" alt="okumura_hata.png"width="100%">
+        <p> <br> </p>
+
+    </center>
+</div>
+
+<div>
+    <h3>
+
+        <br>
+        O modelo de Okumura - Hata permite obter o valor mediano da atenuação de 
+        propagação, dependente do  ambiente de propagação, da seguinte forma: 
+        
+        <h5>
+
+            $$ 
+                L_{p[dB]} = 69.55 + 26.16·log(f_{MHz}) - 13.82·log(h_{be[m]}) + 
+                
+            $$
+            $$
+                [44.90 - 6.55·log(h_{be[m]})]·log(d_{km}) - H_{mu[dB]}(h_m, f) - F(fator\;de\;correção)
+            $$
+        
+        </h5>
+
+    </h3>
+
+</div>
+  
+{% endblock %}
+
+{% block main %}
+
+    <div class="col-md-12">
+        
+        <center>
+
+            <h2> Calculadora em meio urbano - cidade pequena e/ou média </h2>
+
+            <button data-toggle="collapse" data-target="#urbano_pequeno">
+                {% load static %} 
+                <img src="{% static "down_icon.png" %}" alt="down_icon.png" width="30" height="30"> 
+                <br>Mostrar                    
+            </button>
+
+            <div id="urbano_pequeno" class="collapse">
+
+                <p> <br> </p>
+
+                <center>
+
+                    <form action="okumura_hata_calculadora_meio_urbano_pequena" method="POST">
+
+                        {% csrf_token %}
+
+                        Indica a frequência de trabalho [MHz]:<br>
+                        <input type="text" name="f"><br><br>
+
+                        Indica a distância de ligação [Km]:<br>    
+                        <input type="text" name="d"><br><br>
+                        
+                        Indica a altura do movel [m]:<br>     
+                        <input type="text" name="hm"><br><br>
+
+                        Indica a altura efetiva da estação base [m]:<br>
+                        <input type="text" name="hbe"><br><br>
+
+                        <input type="submit" value="Calcular">
+
+                    </form>
+
+                </center>
+
+            </div>
+            <p> <br> </p>   
+
+            <h2> Calculadora em meio urbano - cidade grande </h2>
+
+            <button data-toggle="collapse" data-target="#urbano_grande">
+                {% load static %} 
+                <img src="{% static "down_icon.png" %}" alt="down_icon.png"  width="30" height="30"> 
+                <br>Mostrar                    
+            </button>
+
+            <div id="urbano_grande" class="collapse">
+
+                <p> <br> </p>
+
+                <center>
+
+                    <form action="okumura_hata_calculadora_meio_urbano_grande" method="POST" >
+                        {% csrf_token %}
+
+                        Indica a frequência de trabalho [MHz]:<br>
+                        <input type="text" name="f"><br><br>
+
+                        Indica a distância de ligação [Km]:<br>    
+                        <input type="text" name="d"><br><br>
+                        
+                        Indica a altura do movel [m]:<br>     
+                        <input type="text" name="hm"><br><br>
+
+                        Indica a altura efetiva da estação base [m]:<br>
+                        <input type="text" name="hbe"><br><br>
+
+                        <input type="submit" value="Calcular">
+
+                    </form>
+
+                </center>
+
+            </div>
+            <p> <br> </p>
+
+            <h2> Calculadora para o meio sub-urbano </h2>
+
+            <button data-toggle="collapse" data-target="#suburbano">
+                {% load static %} 
+                <img src="{% static "down_icon.png" %}" alt="down_icon.png"  width="30" height="30"> 
+                <br>Mostrar                    
+            </button>
+
+            <div id="suburbano" class="collapse">
+
+                <p> <br> </p>
+
+                <center>
+
+                    <form action="okumura_hata_calculadora_meio_suburbano" method="POST" >
+                        {% csrf_token %}
+
+                        Indica a frequência de trabalho [MHz]:<br>
+                        <input type="text" name="f"><br><br>
+
+                        Indica a distância de ligação [Km]:<br>    
+                        <input type="text" name="d"><br><br>
+                        
+                        Indica a altura do movel [m]:<br>     
+                        <input type="text" name="hm"><br><br>
+
+                        Indica a altura efetiva da estação base [m]:<br>
+                        <input type="text" name="hbe"><br><br>
+
+                        <input type="submit" value="Calcular">
+
+                    </form>
+
+                </center>
+
+            </div>
+            <p> <br> </p>
+
+            <h2> Calculadora para o meio rural </h2>
+
+            <button data-toggle="collapse" data-target="#rural">
+                {% load static %} 
+                <img src="{% static "down_icon.png" %}" alt="down_icon.png"  width="30" height="30"> 
+                <br>Mostrar                    
+            </button>
+
+            <div id="rural" class="collapse">
+                <p> <br> </p>
+
+                <center>
+
+                    <form action="okumura_hata_calculadora_meio_rural" method="POST" >
+                        {% csrf_token %}
+
+                        Indica a frequência de trabalho [MHz]:<br>
+                        <input type="text" name="f"><br><br>
+
+                        Indica a distância de ligação [Km]:<br>    
+                        <input type="text" name="d"><br><br>
+                        
+                        Indica a altura do movel [m]:<br>     
+                        <input type="text" name="hm"><br><br>
+
+                        Indica a altura efetiva da estação base [m]:<br>
+                        <input type="text" name="hbe"><br><br>
+
+                        <input type="submit" value="Calcular">
+
+                    </form>
+
+                </center>
+                                
+
+            </div>
+            <p> <br> </p>
+            
+        </center>
+        
+    <div>
+
+{% endblock main %}

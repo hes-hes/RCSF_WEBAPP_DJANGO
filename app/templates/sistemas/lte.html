@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+
+<div class="row">
+    <h1 class="display-3">LTE - 4G</h1>
+</div>
+
+<div class="row">
+    <center>
+        {% load static %} 
+        <img src="{% static "lte.png" %}" alt="lte.png"width="78%"> 
+    </center>
+</div>
+
+<div>
+
+    <h3 align="justify">
+      LTE (Long Term Evolution) é a 4ª geração de comunicações moveis que foi lançada oficialmente ao publico em 2010. 
+      Engloba tambem o 4G+  tambem conhecido por LTE Advanced.
+    </h3>
+    
+</div>
+
+
+
+{% endblock %}
+
+{% block main %}
+
+<div class="col-md-12">
+    <h2 style="font-weight: bold;"> LTE (4G vs 4G+) </h2>
+    <h5 align="justify">
+      A principal diferença entre o 4G normal e o 4G+ é que os dispositivos compativeis com LTE Advanced ligam-se 
+      simultaneamente a mais de uma frequência ou faixa de espectro. Esta tecnologia é conhecida como agregação de portadora 
+      (carrier aggregation) e aumenta a capacidade de transferência entre o dispositivo do utilizador e a antena da operadora.
+    </h5>
+
+    <h2 style="font-weight: bold;"> Técnica de Acesso Múltiplo </h2>
+    <h5 align="justify">
+      LTE usa OFDMA(Orthogonal Frequency Division Multiple Access) para download e SC-FDMA(Single Carrier Frequency Division 
+      Multiple Access) para upload.<br><br>
+
+      OFDMA (Orthogonal Frequency Division Multiple Access), distribui as informações da transmissões entre diversos subconjuntos paralelos de portadoras.
+      Enquanto que SC-FDMA (Single Carrier Frequency Division Multiple Access - algo como "FDMA de Portadora Única") é uma especificação semelhante ao OFDMA, 
+      mas que consegue reduzir o consumo de potência, fazendo com que o uso de energia por parte dos dispositivos conectados também diminua. Apesar do nome, 
+      o SC-FDMA também pode utilizar subconjuntos de portadoras.
+              
+    </h5>
+
+    <h2 style="font-weight: bold;"> Débitos </h2>
+    <h5 align="justify">
+      O LTE pode alcançar ate 300 Mb/s de download e 75 Mb/s de upload dependendo das características do telemóvel.<br><br>
+
+      Estas velocidades são possíveis, entre outros motivos, graças a uma largura de banda entre 5 MHz e 20 MHz que opcionalmente consegue chegar aos 40 MHz.
+
+    </h5>
+
+    <h2 style="font-weight: bold;"> Tipos de serviços </h2>
+    <h5 align="justify">
+      O LTE garante os seguintes serviços:<br>
+
+      <ul>
+        <li>Streaming em Full HD (Youtube, Netflix, etc)</li>
+        <li>Voz e Video em Full HD (1080p)</li>
+        <li>Dados</li>
+        <li>SMS e MMS</li>
+      </ul>
+
+    </h5>
+
+    <h2 style="font-weight: bold;"> O que é 4,5G? </h2>
+    <h5 align="justify">
+      O 4,5G nada mais é do que o 4G+ nas suas melhores condições. O nome 4,5G é um nome comercial para a tecnologia LTE-Advanced-Pro. É uma tecnologia permite 
+      maior velocidade de acesso à internet, que pode ultrapassar as centenas de megabits por segundo.<br><br>
+
+      4,5G representa três características técnicas na rede:<br>
+
+      <ul>
+        <li align="justify"> Agregação de portadora: combinar três diferentes faixas de frequência, chegando ao mínimo de 30 MHz de espectro; </li>
+        <li align="justify"> 
+          MIMO 4×4: a tecnologia MIMO significa “multiple-input multiple-output”, ou seja, múltiplas entradas e múltiplas saídas. O recurso permite que a 
+          comunicação entre o dispositivo do cliente e operadora seja feita utilizando 4 antenas de transmissão e outras 4 antenas de recepção;
+        </li>
+        <li align="justify">           
+          Modulação 256 QAM: esquema de modulação que permite maior eficiência espectral, transmitindo mais bits de dados a cada tempo. Permite que os dispositivos
+          conectados transmitam um volume muito maior de dados simultaneamente.
+        </li>
+      </ul>
+
+    </h5>
+
+</div>
+
+{% endblock main %}
+

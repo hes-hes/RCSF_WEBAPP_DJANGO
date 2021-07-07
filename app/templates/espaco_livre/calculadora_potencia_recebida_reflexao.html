@@ -1,0 +1,141 @@
+<!DOCTYPE html>  
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Redes de Comunicação Sem Fios</title>
+
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">
+
+        <!-- Bootstrap core CSS
+        https://getbootstrap.com/docs/4.0/examples/jumbotron/
+        -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- Custom styles for this template -->
+        
+        {% load static %}   
+        <link rel="stylesheet" href=" {% static 'styles.css' %} ">
+
+        
+
+    </head>
+
+    {% block extrascripts %}
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-mml-chtml.js">
+    </script>
+    {% endblock extrascripts %}
+
+
+    <body>
+
+        <main role="main">
+
+            <!-- Main jumbotron for a primary marketing message or call to action -->
+            <div class="jumbotron">
+                <div class="container">
+                    <center>
+                        <h1> Calculadora da potencia recebida com reflexão em espaço livre </h1>
+                    </center>
+                </div>
+            </div>
+
+            <div class="container">
+
+                <div class="row" >
+
+                    <div class="col-md-1">
+
+                    </div>
+
+                    <div class="col-md-10" style="border-style:solid;height: 60vh" >
+
+                        <p> <br> </p>
+
+                        <center>
+
+                            {% if erro == True %}
+
+                                {% load static %} 
+                                <img src="{% static "erro.png" %}" alt="erro.png" width="200">
+                                <p> <br> </p>
+
+                                <h2 align="center" style="color:red"> 
+                                    Erro! Os valores introduzidos são inválidos. Tenta novamente.
+                                </h2>
+
+                            {% endif %}
+
+                            {% if erro == False %}
+
+                                <h3 align="justify"> 
+                                    Com uma potência de emissão de {{potencia_emitida}} dB, ganho de emissor de 
+                                    {{ganho_emissor}} dB e ganho do recetor {{ganho_recetor}} dB,distância de 
+                                    {{distancia}} km e frequência de {{frequencia}} MHz, tem-se a seguinte 
+                                    potência recebida:
+                                </h3>
+
+                                <h4>
+                                    $$ P_{r} = {{potencia_recebida}} [dB] $$
+                                </h4>
+                            
+                            {% endif %}
+
+
+                        </center>
+
+                    </div>
+
+                    <div class="col-md-1">
+
+                    </div>
+                    
+                </div>
+
+                <center>
+
+                    <p> <br> </p>
+
+                    <button onclick="history.back()">
+                        {% load static %} 
+                        <img src="{% static "down_icon.png" %}" alt="down_icon.png" width="30" height="30" style="transform:rotate(90deg)"> 
+                        <br>Voltar                    
+                    </button>
+                
+                </center>
+
+            </div>
+
+            <hr>
+
+            </div> <!-- /container -->
+
+        </main>
+
+        <footer class="container">
+            <p>&copy;</p>
+            <p>
+                Desenvolvido por: Héricles Emanuel Semedo, aluno de Engenharia Informática Redes e Telecomunicações;<br>
+                Orientado por: Lucio Studer Ferreira, Professor Doutor;<br>
+                Universidade Lusófona Humanidades e Tecnologias, 2021
+            </p>
+        </footer>
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+        <script src="../../assets/js/vendor/popper.min.js"></script>
+        <script src="../../dist/js/bootstrap.min.js"></script>
+    </body>
+
+</html>

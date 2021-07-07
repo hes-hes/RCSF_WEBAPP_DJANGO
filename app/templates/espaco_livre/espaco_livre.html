@@ -1,0 +1,244 @@
+{% extends 'layout.html' %}
+
+
+{% block title %}
+
+<div class="row">
+    <h1 class="display-3"> Propagação em espaço livre </h1>
+</div>
+
+<div class="row">
+    <center>
+        <p> <br> </p>
+
+        {% load static %} 
+        <img src="{% static "free_space.png" %}" alt="free_space.png"width="80%">
+        <p> <br> </p>
+    </center>
+</div>
+
+<div>
+    <h3>
+        <br>
+        O modelo de propagação em espaço livre define a potência que chega 
+        no recetor da seguinte forma:
+        
+        <h5>
+        $$ P_{r[dB]} = P_{e[dB]} + G_{e[dB]} + G_{r[dB]} - L_{0[dB]} $$
+        
+        $$ L_{0[dB]} = 32.44 + 20 · log_{10}(d_{[Km]}) + 20 · log_{10}(f_{[MHz]}) $$
+        </h5>
+    </h3>
+
+</div>
+  
+{% endblock %}
+
+{% block main %}
+
+    <div class="col-md-12">
+        
+        <center>
+
+            <h2> Calculadora da potência recebida</h2>
+
+            <button data-toggle="collapse" data-target="#Calculadora_da_potência_recebida">
+                {% load static %} 
+                <img src="{% static "down_icon.png" %}" alt="down_icon.png" width="30" height="30"> 
+                <br>Mostrar                    
+            </button>
+
+            <div id="Calculadora_da_potência_recebida" class="collapse">
+
+                <p> <br> </p>
+
+                <center>
+
+                    <form action="calculadora_potencia_recebida" method="POST" >
+                    {% csrf_token %}
+
+                    Indica a potência de emissão [dB]:<br>     
+                    <input type="text" name="pe"><br><br>
+
+                    Indica o ganho do emissor [dB]:<br>      
+                    <input type="text" name="ge"><br><br>
+
+                    Indica o ganho no recetor [dB]:<br>       
+                    <input type="text" name="gr"><br><br>
+
+                    Indica a frequência de trabalho [MHz]:<br> 
+                    <input type="text" name="f"><br><br>
+                    
+                    Indica a distância de ligação [Km]:<br>    
+                    <input type="text" name="d"><br><br>
+
+                    <input type="submit" value="Calcular">
+
+                    </form>
+
+                </center>
+
+            </div>
+
+            <p> <br> </p>
+
+            <h2> Calculadora da potência recebida com reflexão</h2>
+
+            <button data-toggle="collapse" data-target="#Calculadora_da_potência_recebida_reflexao">
+                {% load static %} 
+                <img src="{% static "down_icon.png" %}" alt="down_icon.png" width="30" height="30"> 
+                <br>Mostrar                    
+            </button>
+
+            <div id="Calculadora_da_potência_recebida_reflexao" class="collapse">
+
+                <p> <br> </p>
+                {% load static %} 
+                <img src="{% static "espaco_livre_reflexao.png" %}" alt="espaco_livre_reflexao.png"width="50%">
+                <p> <br> </p>
+
+                <center>
+
+                    <form action="calculadora_potencia_recebida_reflexao" method="POST" >
+                    {% csrf_token %}
+
+                    Indica a potência de emissão [dB]:<br>     
+                    <input type="text" name="pe"><br><br>
+
+                    Indica o ganho do emissor [dB]:<br>      
+                    <input type="text" name="ge"><br><br>
+
+                    Indica o ganho no recetor [dB]:<br>       
+                    <input type="text" name="gr"><br><br>
+                    
+                    Indica a distância de ligação [Km]:<br>    
+                    <input type="text" name="d"><br><br>
+
+                    Indica a altura do emissor [m]:<br> 
+                    <input type="text" name="he"><br><br>
+
+                    Indica a altura do recetor [m]:<br> 
+                    <input type="text" name="hr"><br><br>
+
+                    Indica o valor de decaimento médio de potência (n):<br> 
+                    <input type="text" name="n"><br><br>
+
+                    <input type="submit" value="Calcular">
+
+                    </form>
+
+                </center>
+
+            </div>
+
+            <p> <br> </p>
+            
+            <h2> Calculadora da Atenuação de espaço livre</h2>
+
+            <button data-toggle="collapse" data-target="#calculadora_atenuacao_espaço_livre" >
+                {% load static %} 
+                <img src="{% static "down_icon.png" %}" alt="down_icon.png"  width="30" height="30"> 
+                <br>Mostrar                    
+            </button>
+
+            <div id="calculadora_atenuacao_espaço_livre" class="collapse">
+
+                <p> <br> </p>
+
+                <center>
+
+                    <form action="calculadora_atenuacao_espaço_livre" method="POST" >
+                    {% csrf_token %}
+
+                    Indica a frequência de trabalho [MHz]:<br> 
+                    <input type="text" name="f"><br><br>
+                    
+                    Indica a distância de ligação [Km]:<br>    
+                    <input type="text" name="d"><br><br>
+
+                    <input type="submit" value="Calcular">
+
+                    </form>
+
+                </center>
+
+            </div>
+            <p> <br> </p>
+            
+            <h2> Gráfico da atenuação e distância de propagação</h2>
+
+            <button data-toggle="collapse" data-target="#grafico_a0_espaco_livre">
+                {% load static %} 
+                <img src="{% static "down_icon.png" %}" alt="down_icon.png"  width="30" height="30"> 
+                <br>Mostrar                    
+            </button>
+
+            <div id="grafico_a0_espaco_livre" class="collapse">
+                <p> <br> </p>
+
+                <center>
+
+                    <form action="grafico_a0_espaco_livre" method="POST" >
+                    {% csrf_token %}
+
+                    Indica a frequência de trabalho [MHz]:<br> 
+                    <input type="text" name="f"><br><br>
+                    
+                    <input type="submit" value="Calcular">
+
+                    </form>
+
+                </center>
+                                
+
+            </div>
+            <p> <br> </p>
+
+
+            <h2> Gráfico da potência recebida e distância de propagação</h2>
+
+            <button data-toggle="collapse" data-target="#grafico_pr_espaco_livre">
+                {% load static %} 
+                <img src="{% static "down_icon.png" %}" alt="down_icon.png"  width="30" height="30"> 
+                <br>Mostrar                    
+            </button>
+
+            <div id="grafico_pr_espaco_livre" class="collapse">
+                <p> <br> </p>
+
+                <center>
+
+                    <form action="grafico_pr_espaco_livre" method="POST" >
+                    {% csrf_token %}
+
+                    Indica a potência minima recebida [dB]:<br>     
+                    <input type="text" name="pr"><br><br>
+
+                    Indica a potência de emissão [dB]:<br>     
+                    <input type="text" name="pe"><br><br>
+
+                    Indica o ganho do emissor [dB]:<br>      
+                    <input type="text" name="ge"><br><br>
+
+                    Indica o ganho no recetor [dB]:<br>       
+                    <input type="text" name="gr"><br><br>
+
+                    Indica a frequência de trabalho [MHz]:<br> 
+                    <input type="text" name="f"><br><br>
+                    
+                    <input type="submit" value="Calcular">
+
+                    </form>
+
+                </center>
+                                
+
+            </div>
+            <p> <br> </p>
+            
+        </center>
+        
+    <div>
+
+{% endblock main %}
+
