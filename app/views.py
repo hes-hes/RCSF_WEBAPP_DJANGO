@@ -38,7 +38,7 @@ def wifi(request):
     #return HttpResponse("WIFI")
     return render(request,"sistemas/wifi.html")
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # #
 
 ### ESPACO LIVRE ###
 def espaco_livre(request):
@@ -50,22 +50,22 @@ def calculadora_potencia_recebida(request):
     try:
 
         potencia_emitida = float(request.POST['pe'])
-        ganho_emissor = float(request.POST['ge']) 
-        ganho_recetor = float(request.POST['gr'])  
-        frequencia = float(request.POST['f'])  
-        distancia = float(request.POST['d']) 
+        ganho_emissor = float(request.POST['ge'])
+        ganho_recetor = float(request.POST['gr'])
+        frequencia = float(request.POST['f'])
+        distancia = float(request.POST['d'])
 
-        atenuacao_0 = round(32.44 + 20*log10(distancia) + 20*log10(frequencia),2) 
+        atenuacao_0 = round(32.44 + 20*log10(distancia) + 20*log10(frequencia),2)
         potencia_recebida = round(potencia_emitida + ganho_emissor + ganho_recetor - atenuacao_0,2)
 
         return render(request,"espaco_livre/calculadora_potencia_recebida.html",
             {
                 "potencia_emitida": formatar(potencia_emitida),
-                "ganho_emissor": formatar(ganho_emissor), 
-                "ganho_recetor": formatar(ganho_recetor), 
+                "ganho_emissor": formatar(ganho_emissor),
+                "ganho_recetor": formatar(ganho_recetor),
                 "frequencia": formatar(frequencia),
-                "distancia": formatar(distancia), 
-                "atenuacao_0": formatar(atenuacao_0), 
+                "distancia": formatar(distancia),
+                "atenuacao_0": formatar(atenuacao_0),
                 "potencia_recebida": formatar(potencia_recebida),
                 "erro": False
             })
@@ -75,27 +75,27 @@ def calculadora_potencia_recebida(request):
         return render(request,"espaco_livre/calculadora_potencia_recebida.html",{"erro": True})
 
 def calculadora_potencia_recebida_reflexao(request):
-    
+
     try:
 
-        potencia_emitida = float(request.POST['pe']) 
-        ganho_emissor = float(request.POST['ge'])  
-        ganho_recetor = float(request.POST['gr'])  
-        distancia = float(request.POST['d']) 
-        he = float(request.POST['he'])  
+        potencia_emitida = float(request.POST['pe'])
+        ganho_emissor = float(request.POST['ge'])
+        ganho_recetor = float(request.POST['gr'])
+        distancia = float(request.POST['d'])
+        he = float(request.POST['he'])
         hr = float(request.POST['hr'])
         n = float(request.POST['n'])
-         
-        potencia_recebida = round(-120 + potencia_emitida + ganho_emissor + ganho_recetor + 20 * log10(he) + 20 * log10(hr) - (n * 10) * log10(distancia) , 2)         
+
+        potencia_recebida = round(-120 + potencia_emitida + ganho_emissor + ganho_recetor + 20 * log10(he) + 20 * log10(hr) - (n * 10) * log10(distancia) , 2)
 
         return render(request,"espaco_livre/calculadora_potencia_recebida_reflexao.html",
             {
                 "potencia_emitida": formatar(potencia_emitida),
-                "ganho_emissor": formatar(ganho_emissor), 
+                "ganho_emissor": formatar(ganho_emissor),
                 "ganho_recetor": formatar(ganho_recetor),
                 "hr": formatar(hr),
                 "he": formatar(he),
-                "distancia": formatar(distancia), 
+                "distancia": formatar(distancia),
                 "potencia_recebida": formatar(potencia_recebida),
                 "erro": False
             })
@@ -105,18 +105,18 @@ def calculadora_potencia_recebida_reflexao(request):
         return render(request,"espaco_livre/calculadora_potencia_recebida.html",{"erro": True})
 
 def calculadora_atenuacao_espaço_livre(request):
-    
-    try:
-  
-        frequencia = float(request.POST['f'])
-        distancia = float(request.POST['d'])  
 
-        atenuacao_0 = round(get_atenuacao_espaco_livre(distancia,frequencia),2)        
+    try:
+
+        frequencia = float(request.POST['f'])
+        distancia = float(request.POST['d'])
+
+        atenuacao_0 = round(get_atenuacao_espaco_livre(distancia,frequencia),2)
 
         return render(request,"espaco_livre/calculadora_atenuacao_espaço_livre.html",
-            { 
+            {
                 "frequencia": formatar(frequencia),
-                "distancia": formatar(distancia), 
+                "distancia": formatar(distancia),
                 "atenuacao_0": formatar(atenuacao_0),
                 "erro": False
             })
@@ -126,11 +126,11 @@ def calculadora_atenuacao_espaço_livre(request):
         return render(request,"espaco_livre/calculadora_atenuacao_espaço_livre.html",{"erro": True})
 
 def grafico_a0_espaco_livre(request):
-    
+
     try:
- 
+
         frequencia = float(request.POST['f'])
-       
+
         distancias = []
         it = 0
 
@@ -139,7 +139,7 @@ def grafico_a0_espaco_livre(request):
             it += 1
 
         atenuacoes = []
-    
+
         for d in distancias:
             if(d == 0):
                 atenuacoes.append(0)
@@ -147,12 +147,12 @@ def grafico_a0_espaco_livre(request):
                 atenuacoes.append(
                     round(
                         get_atenuacao_espaco_livre(
-                            d, 
+                            d,
                             frequencia,
                         ),2
                     )
                 )
-               
+
         plt.plot(distancias, atenuacoes)
         plt.xlabel("Distância [km]")
         plt.ylabel("Atenuação [dB]")
@@ -166,9 +166,9 @@ def grafico_a0_espaco_livre(request):
         graph = graph.decode('utf-8')
         plt.close()
         buffer.close()
-        
 
-        #abc += distancias.length()    
+
+        #abc += distancias.length()
 
         return render(request,"espaco_livre/grafico_a0_espaco_livre.html",
             {
@@ -181,23 +181,23 @@ def grafico_a0_espaco_livre(request):
         return render(request,"espaco_livre/grafico_a0_espaco_livre.html",{"erro": True})
 
 def grafico_pr_espaco_livre(request):
-    
+
     try:
 
-        potencia_emitida = float(request.POST['pe']) 
-        potencia_recebida = float(request.POST['pr']) 
-        ganho_emissor = float(request.POST['ge'])  
-        ganho_recetor = float(request.POST['gr'])  
+        potencia_emitida = float(request.POST['pe'])
+        potencia_recebida = float(request.POST['pr'])
+        ganho_emissor = float(request.POST['ge'])
+        ganho_recetor = float(request.POST['gr'])
         frequencia = float(request.POST['f'])
 
         d_max = distancia_maxima(
-                    potencia_recebida, 
-                    potencia_emitida, 
-                    frequencia, 
-                    ganho_emissor, 
+                    potencia_recebida,
+                    potencia_emitida,
+                    frequencia,
+                    ganho_emissor,
                     ganho_recetor
                 )
-    
+
         distancias = []
         it = 0
 
@@ -206,7 +206,7 @@ def grafico_pr_espaco_livre(request):
             it += 1
 
         potencias_recebidas = []
-    
+
         for d in distancias:
             if(d == 0):
                 potencias_recebidas.append(0)
@@ -214,15 +214,15 @@ def grafico_pr_espaco_livre(request):
                 potencias_recebidas.append(
                     round(
                         get_potencia_recetor(
-                            potencia_emitida, 
-                            ganho_emissor, 
-                            ganho_recetor, 
+                            potencia_emitida,
+                            ganho_emissor,
+                            ganho_recetor,
                             frequencia,
                             d
                         ),2
                     )
                 )
-               
+
         plt.plot(distancias, potencias_recebidas)
         plt.axhline(y=potencia_recebida, xmax=100, color='r', linestyle='-')
         plt.xlabel("Distância [km]")
@@ -236,16 +236,16 @@ def grafico_pr_espaco_livre(request):
         graph = graph.decode('utf-8')
         plt.close()
         buffer.close()
-        
 
-        #abc += distancias.length()    
+
+        #abc += distancias.length()
 
         return render(request,"espaco_livre/grafico_espaco_livre.html",
             {
-                "potencia_emitida": formatar(potencia_emitida), 
-                "ganho_emissor":formatar(ganho_emissor), 
-                "ganho_recetor": formatar(ganho_recetor), 
-                "frequencia":formatar(frequencia), 
+                "potencia_emitida": formatar(potencia_emitida),
+                "ganho_emissor":formatar(ganho_emissor),
+                "ganho_recetor": formatar(ganho_recetor),
+                "frequencia":formatar(frequencia),
                 "potencia_recebida":formatar(potencia_recebida),
                 "d_max":formatar(round(d_max,2)),
                 'graph':graph,
@@ -265,13 +265,13 @@ def okumurahata(request):
 def okumura_hata_calculadora_meio_urbano_pequena(request):
     #return HttpResponse("okumurahata_pequena")
     try:
-        hbe = float(request.POST['hbe'])  
-        hm = float(request.POST['hm'])  
-        frequencia = float(request.POST['f'])  
+        hbe = float(request.POST['hbe'])
+        hm = float(request.POST['hm'])
+        frequencia = float(request.POST['f'])
         distancia = float(request.POST['d'])
 
         if (validar_okumura_hata(frequencia, distancia, hbe, hm)):
-            
+
             coeficiente_correcao = 0.8 + (1.1 * log10(frequencia) - 0.7) * hm - 1.56 * log10(frequencia)
             print("CH1 = ")
             print(coeficiente_correcao)
@@ -289,7 +289,7 @@ def okumura_hata_calculadora_meio_urbano_pequena(request):
                 "distancia": formatar(distancia),
                 "erro": False
             })
-        
+
     except ValueError:
         #Handle the exception
         return render(request,"okumura_hata/okumura_hata_calculadora_meio_urbano_pequena.html",
@@ -301,19 +301,19 @@ def okumura_hata_calculadora_meio_urbano_pequena(request):
 def okumura_hata_calculadora_meio_urbano_grande(request):
     #return HttpResponse("okumurahata_urbana")
     try:
-        hbe = float(request.POST['hbe'])  
-        hm = float(request.POST['hm'])  
-        frequencia = float(request.POST['f'])  
+        hbe = float(request.POST['hbe'])
+        hm = float(request.POST['hm'])
+        frequencia = float(request.POST['f'])
         distancia = float(request.POST['d'])
 
         if (validar_okumura_hata(frequencia, distancia, hbe, hm)):
 
             if (frequencia >= 150 and frequencia <= 200):
-                coeficiente_correcao = 8.29 * ((log10(1.54 * hm))**2) - 1.1                
+                coeficiente_correcao = 8.29 * ((log10(1.54 * hm))**2) - 1.1
 
             else:
                 coeficiente_correcao = 3.2 * ((log10(11.75 * hm))**2) - 4.97
-            
+
             atenuacao = 69.55 + 26.16 * log10(frequencia) - 13.82 * log10(hbe) - coeficiente_correcao + (44.9 - 6.55 * log10(hbe)) * log10(distancia)
 
             atenuacao = round(atenuacao,2)
@@ -327,7 +327,7 @@ def okumura_hata_calculadora_meio_urbano_grande(request):
                 "distancia": formatar(distancia),
                 "erro": False
             })
-        
+
     except ValueError:
         #Handle the exception
         return render(request,"okumura_hata/okumura_hata_calculadora_meio_urbano_grande.html",
@@ -338,20 +338,20 @@ def okumura_hata_calculadora_meio_urbano_grande(request):
 
 def okumura_hata_calculadora_meio_suburbano(request):
     #return HttpResponse("okumurahata_sub_urbana")
-    
+
     try:
-        hbe = float(request.POST['hbe'])  
-        hm = float(request.POST['hm'])  
-        frequencia = float(request.POST['f'])  
+        hbe = float(request.POST['hbe'])
+        hm = float(request.POST['hm'])
+        frequencia = float(request.POST['f'])
         distancia = float(request.POST['d'])
 
         if (validar_okumura_hata(frequencia, distancia, hbe, hm)):
-            
+
             coeficiente_correcao = 0.8 + (1.1 * log10(frequencia) - 0.7) * hm - 1.56 * log10(frequencia)
-            
+
             atenuacao = 69.55 + 26.16 * log10(frequencia) - 13.82 * log10(hbe) - coeficiente_correcao + (44.9 - 6.55 * log10(hbe)) * log10(distancia)
 
-            atenuacao = atenuacao - 2 * ((log10(frequencia/28))**2) - 5.4 
+            atenuacao = atenuacao - 2 * ((log10(frequencia/28))**2) - 5.4
 
             atenuacao = round(atenuacao,2)
 
@@ -376,15 +376,15 @@ def okumura_hata_calculadora_meio_suburbano(request):
 def okumura_hata_calculadora_meio_rural(request):
     #return HttpResponse("okumurahata_pequena")
     try:
-        hbe = round(float(request.POST['hbe']), 2)  
-        hm = round(float(request.POST['hm']), 2)  
-        frequencia = round(float(request.POST['f']), 2)  
+        hbe = round(float(request.POST['hbe']), 2)
+        hm = round(float(request.POST['hm']), 2)
+        frequencia = round(float(request.POST['f']), 2)
         distancia = round(float(request.POST['d']), 2)
 
         if (validar_okumura_hata(frequencia, distancia, hbe, hm)):
-            
+
             coeficiente_correcao = 0
-            
+
             if (frequencia >= 150 and frequencia <= 200):
 
                 coeficiente_correcao = 8.29 * ((log10(1.54 * hm))**2) - 1.1
@@ -407,7 +407,7 @@ def okumura_hata_calculadora_meio_rural(request):
                 "distancia":distancia,
                 "erro": False
             })
-        
+
     except ValueError:
         #Handle the exception
         return render(request,"okumura_hata/okumura_hata_calculadora_meio_rural.html",
@@ -425,33 +425,33 @@ def walfischikegami(request):
 
 def walfisch_ikegami_media(request):
     #return HttpResponse("walfisch_ikegami_media")
-    
+
     try:
 
         frequencia = float(request.POST['f'])
         andares = float(request.POST['a'])
-        hbe = float(request.POST['hbe'])  
+        hbe = float(request.POST['hbe'])
         dist_edificios = float(request.POST['d'])
         distancia = float(request.POST['dist'])
-        hm = float(request.POST['hm'])  
-        angulo = float(request.POST['angulo'])  
+        hm = float(request.POST['hm'])
+        angulo = float(request.POST['angulo'])
 
         if (angulo == 0):
             atenuacao = 42.6 + 26 * log10(distancia) + 20 * log10(frequencia)
-        
+
         else:
             kf = (frequencia/925 - 1) * 0.7 - 4
 
             altura_edificio = 3 * andares
 
             Lmsd = get_Lmsd(hbe, hm, altura_edificio, dist_edificios, frequencia, distancia, kf)
-            
+
             Lori = get_Lori(angulo)
 
             Lrts = get_Ltrs(dist_edificios, frequencia, altura_edificio, hm, Lori)
-            
+
             atenuacao = 32.4 + 20*log10(distancia) + 20*log10(frequencia) + Lrts + Lmsd
-            
+
         atenuacao = round(atenuacao,2)
 
         return render(request,"walfisch_ikegami/walfisch_ikegami_media.html",
@@ -465,7 +465,7 @@ def walfisch_ikegami_media(request):
             "distancia": formatar(distancia),
             "erro": False
         })
-        
+
     except ValueError:
         #Handle the exception
         return render(request,"walfisch_ikegami/walfisch_ikegami_media.html",
@@ -473,7 +473,7 @@ def walfisch_ikegami_media(request):
             "erro": True,
             "msg": 'Erro! Valores inválidos para o modelo de Walfisch - Ikegami.'
         })
-    
+
 def walfisch_ikegami_metropolitana(request):
     #return HttpResponse("walfisch_ikegami_metropolitana")
 
@@ -481,15 +481,15 @@ def walfisch_ikegami_metropolitana(request):
 
         frequencia = float(request.POST['f'])
         andares = float(request.POST['a'])
-        hbe = float(request.POST['hbe'])  
+        hbe = float(request.POST['hbe'])
         dist_edificios = float(request.POST['d'])
         distancia = float(request.POST['dist'])
-        hm = float(request.POST['hm'])  
-        angulo = float(request.POST['angulo'])  
+        hm = float(request.POST['hm'])
+        angulo = float(request.POST['angulo'])
 
         if (angulo == 0):
             atenuacao = 42.6 + 26 * log10(distancia) + 20 * log10(frequencia)
-        
+
         else:
             print(1)
             kf = (frequencia/925 - 1) * 1.5 - 4
@@ -497,16 +497,16 @@ def walfisch_ikegami_metropolitana(request):
             altura_edificio = 3 * andares
 
             Lmsd = get_Lmsd(hbe, hm, altura_edificio, dist_edificios, frequencia, distancia, kf)
-            
+
             Lori = get_Lori(angulo)
 
             Lrts = get_Ltrs(dist_edificios, frequencia, altura_edificio, hm, Lori)
-            
+
             atenuacao = 32.4 + 20*log10(distancia) + 20*log10(frequencia) + Lrts + Lmsd
-            
+
         atenuacao = round(atenuacao,2)
 
-        return render(request,"walfisch_ikegami/okumura_hata_calculadora_meio_suburbano.html",
+        return render(request,"walfisch_ikegami/walfisch_ikegami_metropolitana.html",
         {
             "atenuacao": formatar(atenuacao),
             "hbe": formatar(hbe),
@@ -517,15 +517,15 @@ def walfisch_ikegami_metropolitana(request):
             "distancia": formatar(distancia),
             "erro": False
         })
-        
+
     except ValueError:
         #Handle the exception
-        return render(request,"walfisch_ikegami/okumura_hata_calculadora_meio_suburbano.html",
+        return render(request,"walfisch_ikegami/walfisch_ikegami_metropolitana.html",
         {
             "erro": True,
             "msg": 'Erro! Valores inválidos para o modelo de Walfisch - Ikegami.'
         })
-    
+
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 ### INTERFERERNCIA CO-CANAL ###
@@ -539,13 +539,13 @@ def calculadora_interferencia_cocanal(request):
         n = float(request.POST['n'])
         ncp = float(request.POST['ncp'])
 
-        interferencia = get_interferencia_cocanal(n,ncp) 
+        interferencia = get_interferencia_cocanal(n,ncp)
 
         return render(request,"interferencia_cocanal/calculadora_interferencia_cocanal.html",
             {
-                "interferencia": formatar(round(interferencia,2)), 
+                "interferencia": formatar(round(interferencia,2)),
                 "ncp": formatar(round(ncp,2)),
-                "n": formatar(round(n,2)), 
+                "n": formatar(round(n,2)),
                 "rcc": formatar(round(sqrt(3*ncp),2)),
                 "erro": False
             })
@@ -564,9 +564,9 @@ def calculadora_interferencia_cocanal_trisetorial(request):
 
         return render(request,"interferencia_cocanal/calculadora_interferencia_cocanal_trisetorial.html",
             {
-                "interferencia": formatar(round(interferencia,2)), 
+                "interferencia": formatar(round(interferencia,2)),
                 "ncp": formatar(round(ncp,2)),
-                "n":  formatar(round(n,2)), 
+                "n":  formatar(round(n,2)),
                 "rcc": formatar(round(sqrt(3*ncp),2)),
                 "erro": False
             })
@@ -577,19 +577,19 @@ def calculadora_interferencia_cocanal_trisetorial(request):
 
 def calculadora_cluster_minima(request):
     try:
-        interferencia = float(request.POST['c_i']) 
+        interferencia = float(request.POST['c_i'])
         coeficiente_atenuacao = float(request.POST['n'])
 
         rcc = (6 * interferencia) ** (1/coeficiente_atenuacao)
 
-        cluster_minima = (rcc**2)/3        
+        cluster_minima = (rcc**2)/3
 
         return render(request,"interferencia_cocanal/calculadora_cluster_minima.html",
             {
                 "cluster_minima": formatar(round(cluster_minima,2)),
                 "cluster_minima_round": formatar(round(cluster_minima)),
-                "interferencia": formatar(round(interferencia,2)), 
-                "coeficiente_atenuacao": formatar(round(coeficiente_atenuacao,2)), 
+                "interferencia": formatar(round(interferencia,2)),
+                "coeficiente_atenuacao": formatar(round(coeficiente_atenuacao,2)),
                 "rcc": formatar(rcc),
                 "erro": False
             })
@@ -597,7 +597,7 @@ def calculadora_cluster_minima(request):
     except ValueError:
         #Handle the exception
         return render(request,"interferencia_cocanal/calculadora_cluster_minima.html",{"erro": True})
-    
+
 def grafico_interferencia_cocanal(request):
     try:
 
@@ -611,12 +611,12 @@ def grafico_interferencia_cocanal(request):
             lista_ci = []
             for ncp in lista_ncp:
                 lista_ci.append(get_interferencia_cocanal(n, ncp))
-                               
+
             plt.bar(lista_ncp, lista_ci)
             plt.xlabel("Tamanho do cluster")
             plt.ylabel("C/I [dB]")
             plt.axhline(y=interferencia_limite, xmax=100, color='b', linestyle='-')
-            
+
         buffer = BytesIO()
         plt.savefig(buffer, format='png')
         buffer.seek(0)
@@ -627,7 +627,7 @@ def grafico_interferencia_cocanal(request):
         buffer.close()
 
         return render(request,"interferencia_cocanal/grafico_interferencia_cocanal.html",
-            { 
+            {
                 "graph":graph,
                 "interferencia_limite": formatar(interferencia_limite),
                 "erro": False
@@ -636,7 +636,7 @@ def grafico_interferencia_cocanal(request):
     except ValueError:
         #Handle the exception
         return render(request,"interferencia_cocanal/grafico_interferencia_cocanal.html",{"erro": True})
-        
+
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 ### TRAFEGO ###
@@ -646,7 +646,7 @@ def trafego(request):
 
 def calculadora_probabilidade_bloqueio(request):
     try:
-        trafego = float(request.POST['trafego']) 
+        trafego = float(request.POST['trafego'])
         canais = float(request.POST['canais'])
 
         probabilidade = get_probabilidade_de_bloqueio(trafego,canais)
@@ -705,4 +705,3 @@ def calculadora_de_trafego_oferecido(request):
         return render(request,"trafego/calculadora_de_trafego_oferecido.html",{"erro": True})
 
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-
