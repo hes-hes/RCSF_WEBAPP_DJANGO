@@ -1,7 +1,7 @@
 # Redes de comunicação sem fios - Django (Python) - 2021
 
 #### Aplicação web desenvolvido no âmbito da disciplina de Redes de Comunicação sem fios, utilizando o framework web Django - Python.
-#### Desenvolvido por: Héricles Emanuel Semedo, aluno de Engenharia Informática Redes e Telecomunicações;<br/> Orientado por: Lucio Studer Ferreira, Professor Doutor;<br/> Universidade Lusófona Humanidades e Tecnologias, 2021 (ULHT)<br/>
+#### Desenvolvido por: Héricles Emanuel Semedo, aluno de Engenharia Informática Redes e Telecomunicações;<br/> Orientado por: Lucio Studer Ferreira, Professor Doutor (@github/Lucio Studer Ferreira);<br/> Universidade Lusófona Humanidades e Tecnologias, 2021 (ULHT)<br/>
   
 <p align="center">
   <img src="app/static/index.jpg" height="300" style="vertical-align: middle">
