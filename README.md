@@ -11,3 +11,7 @@
 ## Links:
 #### versão Desktop: https://wirelesscommunication.herokuapp.com/
 #### versão Mobile: https://wirelesscommunicationmob.herokuapp.com/
+
+<p align="center">
+  <img src="mobile_qr_code.png" height="200" style="vertical-align: middle">
+</p>
