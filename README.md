@@ -7,10 +7,12 @@
   <img src="app/static/index.jpg" height="300" style="vertical-align: middle">
 </p>
   
-## Links:
-#### versão Desktop: https://wirelesscommunication.herokuapp.com/
-#### versão Mobile: https://wirelesscommunicationmob.herokuapp.com/
+## URL dos sites (Heroku):
+#### + Versão Desktop: https://wirelesscommunication.herokuapp.com/
+#### + Versão Mobile: https://wirelesscommunicationmob.herokuapp.com/
 
 <p align="center">
   <img src="mobile_qr_code.png" height="200" style="vertical-align: middle">
 </p>
+
+
