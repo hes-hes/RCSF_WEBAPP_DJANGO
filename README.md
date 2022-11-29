@@ -7,7 +7,7 @@
   <img src="app/static/index.jpg" height="300" style="vertical-align: middle">
 </p>
   
-## URL dos sites (Heroku):
+## URL dos sites (Heroku) - [offline]:
 #### + Versão Desktop: https://wirelesscommunication.herokuapp.com/
 #### + Versão Mobile: https://wirelesscommunicationmob.herokuapp.com/
 
